@@ -7,14 +7,16 @@ var notifier = require('./config/notifier');
 var orderService = require('./config/order');
 
 var order;
+var objs;
 
 describe('tyk-order # have orders', function () {
   before(function (done) {
     modelServer(function (models) {
       assert(models);
       order = tykOrder(models, notifier, errors);
-      orderService(models, function (order) {
-        assert(order);
+      orderService(models, function (ret) {
+        objs = ret;
+        assert(objs);
         done();
       });
     });
@@ -33,6 +35,13 @@ describe('tyk-order # have orders', function () {
   });
   it('should update order paid!', function (done) {
     order.update(1, 1, 'ACCEPTED', function (error) {
+      assert.deepEqual(error, errors.Success);
+      done();
+    });
+  });
+
+  it('should update order paid!', function (done) {
+    order.update(objs.order1.id, objs.store.id, 'ACCEPTED', function (error) {
       assert.deepEqual(error, errors.Success);
       done();
     });
