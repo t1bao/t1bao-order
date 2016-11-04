@@ -1,9 +1,9 @@
 'use strict';
 var assert = require('assert');
 var tykOrder = require('../lib');
-var errors = require('./errors');
-var modelServer = require('./models');
-var notifier = require('./notifier');
+var errors = require('./config/errors');
+var modelServer = require('./config/models');
+var notifier = require('./config/notifier');
 
 var order;
 
