@@ -11,7 +11,6 @@ module.exports = function (models, next) {
     username: 'merchant',
     password: 'sdofsof'
   });
-  console.log('order 1');
   Promise.all([store, user, merchant]).then(function (m) {
     returns.store = m[0];
     returns.user = m[1];
@@ -33,15 +32,12 @@ module.exports = function (models, next) {
       merchant: m[2],
       store: m[0]
     });
-    console.log('order 2');
     Promise.all([order, order1, merchantStore]).then(function (j) {
       returns.order = j[0];
       returns.order1 = j[1];
-      console.log('order 3');
-      console.log(returns);
       next(returns);
     });
   }).catch(function (error) {
-    console.log(error);
+    console.error(error);
   });
 };
