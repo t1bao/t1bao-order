@@ -5,11 +5,13 @@ module.exports = function (models, next) {
   });
   var user = models.User.create({
     username: 'user',
-    password: 'password'
+    password: 'password',
+    email: 'sdfsfd@dsfsf.com'
   });
   var user1 = models.User.create({
     username: 'user1',
-    password: 'password'
+    password: 'password',
+    phone: '13581725443'
   });
   var merchant = models.Merchant.create({
     username: 'merchant',
