@@ -22,24 +22,36 @@ describe('tyk-order # have orders', function () {
     });
   });
   it('should update no order!', function (done) {
-    order.update(1, 1, 'CREATED', function (error) {
+    order.update(objs.order.id, 1, 'CREATED', function (error) {
       assert.deepEqual(error, errors.OrderStateTransferNotAllowed);
       done();
     });
   });
   it('should update user no order!', function (done) {
-    order.userUpdate(1, 1, 'CREATED', function (error) {
+    order.userUpdate(objs.order.id, 1, 'CREATED', function (error) {
       assert.deepEqual(error, errors.OrderStateTransferNotAllowed);
       done();
     });
   });
   it('should update order paid!', function (done) {
-    order.update(1, 1, 'ACCEPTED', function (error) {
+    order.update(objs.order.id, 1, 'ACCEPTED', function (error) {
       assert.deepEqual(error, errors.Success);
       done();
     });
   });
+  it('should update order paid!', function (done) {
+    order.update(objs.order.id, objs.store.id, 'DEFAULT', function (error) {
+      assert.deepEqual(error, errors.OrderStateTransferNotAllowed);
+      done();
+    });
+  });
 
+  it('should update order paid!', function (done) {
+    order.update(objs.order1.id, objs.store.id, 'PAID', function (error) {
+      assert.deepEqual(error, errors.OrderStateTransferNotAllowed);
+      done();
+    });
+  });
   it('should update order paid!', function (done) {
     order.update(objs.order1.id, objs.store.id, 'ACCEPTED', function (error) {
       assert.deepEqual(error, errors.Success);
