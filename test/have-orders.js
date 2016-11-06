@@ -90,8 +90,14 @@ describe('tyk-order # have orders', function () {
       done();
     });
   });
-  it('should update order paid!', function (done) {
+  it('should cancel order!', function (done) {
     order.update(objs.order1.id, objs.store.id, 'CANCELLED', function (error) {
+      assert.deepEqual(error, errors.Success);
+      done();
+    });
+  });
+  it('should cancel user order!', function (done) {
+    order.userUpdate(objs.order2.id, objs.user1.id, 'CANCELLED', function (error) {
       assert.deepEqual(error, errors.Success);
       done();
     });
