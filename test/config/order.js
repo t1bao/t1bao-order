@@ -6,7 +6,8 @@ module.exports = function (models, next) {
   var user = models.User.create({
     username: 'user',
     password: 'password',
-    email: 'sdfsfd@dsfsf.com'
+    email: 'sdfsfd@dsfsf.com',
+    phone: '15833443238'
   });
   var user1 = models.User.create({
     username: 'user1',
@@ -15,7 +16,9 @@ module.exports = function (models, next) {
   });
   var merchant = models.Merchant.create({
     username: 'merchant',
-    password: 'sdofsof'
+    password: 'sdofsof',
+    email: 'sdfsfd@dsfsf.com',
+    phone: '13581725443'
   });
   Promise.all([store, user, user1, merchant]).then(function (m) {
     returns.store = m[0];
@@ -23,8 +26,7 @@ module.exports = function (models, next) {
     var order = models.Order.create({
       store: m[0],
       user: m[1],
-      no: 'sdfsf',
-      state: 'CREATED'
+      no: 'sdfsf'
     });
     var order1 = models.Order.create({
       store: m[0],
